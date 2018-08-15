@@ -9,7 +9,7 @@ Content-Type: application/json
 {
     "orders": [
         {
-            "country": "RU",
+            "country": null,
             "fio": "Test",
             "phone": "+79998887766",
             "user_ip": "195.33.22.11",

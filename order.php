@@ -1,26 +1,22 @@
 <?php
 
-require_once 'SxGeo.php';
-
 if (isset($_SERVER['HTTP_X_REAL_IP'])) {
-    $called_ip = $_SERVER['HTTP_X_REAL_IP'];
-} elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $called_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-    $called_ip = $_SERVER['REMOTE_ADDR'];
+    $calledIp = $_SERVER['HTTP_X_REAL_IP'];
 }
-
-$SxGeo = new SxGeo(__DIR__ . '/SxGeo.dat');
-$countryKey = $SxGeo->get($called_ip);
-
+//elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+//    $calledIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
+//}
+else {
+    $calledIp = $_SERVER['REMOTE_ADDR'];
+}
 
 $infocdnData = [
     'orders' => [
         [
-            'country'           =>  $countryKey, // страна доставки
+            'country'           =>  null, // страна доставки, если не будет передана - будет определена по IP адресу
             'fio'               =>  $_POST['name'], // Имя
             'phone'             =>  $_POST['phone'], // Телефон
-            'user_ip'           =>  $called_ip, // ip пользователя
+            'user_ip'           =>  $calledIp, // ip пользователя
             'user_agent'        =>  $_SERVER['HTTP_USER_AGENT'], // UserAgent пользователя
             'order_time'        =>  time(), // timestamp времени заказа
         ]
