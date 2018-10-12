@@ -10,6 +10,12 @@ else {
     $calledIp = $_SERVER['REMOTE_ADDR'];
 }
 
+$subId1 = !empty($_POST['sub1']) ? $_POST['sub1'] : '';
+$subId2 = !empty($_POST['sub2']) ? $_POST['sub2'] : '';
+$subId3 = !empty($_POST['sub3']) ? $_POST['sub3'] : '';
+$subId4 = !empty($_POST['sub4']) ? $_POST['sub4'] : '';
+$subId5 = !empty($_POST['sub5']) ? $_POST['sub5'] : '';
+
 $infocdnData = [
     'orders' => [
         [
@@ -24,7 +30,7 @@ $infocdnData = [
     'system'    =>  [
         'network'   => 'ad1', // название сети
         'thread'    => '', // id потока из ad1.ru, например bakm
-        'subid'     => '', // 5 субайди, например subid1:subid2:subid3:subid4:subid5 (не обязательно)
+        'subid'     => implode(':', [$subId1, $subId2, $subId3, $subId4, $subId5]), // 5 субайди, например subid1:subid2:subid3:subid4:subid5 (не обязательно)
         'site_key'  => '' // ключ
     ]
 ];
